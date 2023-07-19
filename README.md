@@ -5,7 +5,7 @@
 
 ## ERD diagram:
 
-![ERD](/assets/erd.png)
+![ERD](/assets/async-inn-erd.png)
 
 ## ERD diagram explanation:
 
@@ -31,3 +31,8 @@ hotel name: Async Inn.
 - conclusion:
   Async Inn has branches in multiple locations, each branch has different room numbers and feature. rooms also vary based on amenities, features, the permission to have pets, prices, and so on.
   this system works as a management tool for the hotel and its assets.
+
+
+## An example of how data is saved in the database:
+
+![ERD](/assets/hoteldb.png)
