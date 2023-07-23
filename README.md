@@ -36,3 +36,23 @@ hotel name: Async Inn.
 ## An example of how data is saved in the database:
 
 ![ERD](/assets/hoteldb.png)
+
+
+## App architecture:
+
+this app uses MVC design patterns, which helps organizing the code and making it easier to maintain.
+this design seperate models, views, and controllers.
+the implementation has three entities, which are:
+
+- Hotel
+- Room
+- Amenity
+
+each entity has a controller, interface, and a service class.
+
+- controller: Acts as an intermediary between the Model and View, handling user input and updating the Model and View accordingly.
+- Model: Represents the data and business logic of the application.
+- view: handles the app's data presentation and user interaction. and it is not implemented yet in this app.
+
+right now, the data appears as a JSON data in the browser, and an interface will be implemented in the future.
+
