@@ -1,6 +1,9 @@
 ﻿using Async_Inn.Data;
 using Async_Inn.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace Async_Inn.Models.Services
 {
@@ -43,6 +46,23 @@ namespace Async_Inn.Models.Services
             _context.Entry(room).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return room;
+        }
+
+
+        public async Task AddAmenityToRoom(int roomId, int amenityId)
+        {
+            var roomAmenity = new RoomAmenity
+            {
+                RoomId = roomId,
+                AmenityId = amenityId
+            };
+            _context.Entry(roomAmenity).State = EntityState.Added;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveAmenityFromRoom(int roomId, int amenityId)
+        {
+            
         }
     }
 }

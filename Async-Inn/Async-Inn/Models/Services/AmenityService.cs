@@ -45,5 +45,5 @@ namespace Async_Inn.Models.Services
             await _context.SaveChangesAsync();
             return amenity;
         }
-    }
+    } 
 }
