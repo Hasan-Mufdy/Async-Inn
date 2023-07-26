@@ -10,9 +10,12 @@ namespace Async_Inn.Data
         {
             
         }
+
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Amenity> Amenities { get; set; }
+
+        public DbSet<RoomAmenity> RoomAmenities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,7 +35,7 @@ namespace Async_Inn.Data
             modelBuilder.Entity<Amenity>().HasData(new Amenity { Id = 2, Name = "AMN_2" });
             modelBuilder.Entity<Amenity>().HasData(new Amenity { Id = 3, Name = "AMN_3" });
 
-
+            modelBuilder.Entity<RoomAmenity>().HasKey(i => new { i.RoomId, i.AmenityId });
 
         }
     }
