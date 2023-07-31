@@ -15,6 +15,11 @@ namespace Async_Inn.Models.Services
         {
             _context = context;
         }
+
+        //public IEnumerable<Room> GetRooms()
+        //{
+        //    return _context.Rooms.Include(r => r.RoomAmenities).ToList();
+        //}
         public async Task<Room> Create(Room room)
         {
             _context.Rooms.Add(room);
