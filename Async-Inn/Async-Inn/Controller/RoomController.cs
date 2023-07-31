@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Async_Inn.Data;
 using Async_Inn.Models;
+using Async_Inn.Models.Interfaces;
 
 namespace Async_Inn.Controller
 {
@@ -14,111 +15,88 @@ namespace Async_Inn.Controller
     [ApiController]
     public class RoomController : ControllerBase
     {
-        private readonly HotelDbContext _context;
+        private readonly IRoom _room;
 
-        public RoomController(HotelDbContext context)
+        public RoomController(IRoom room)
         {
-            _context = context;
+            _room = room;
         }
 
         // GET: api/Room
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
+        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
         {
-          if (_context.Hotels == null)
-          {
-              return NotFound();
-          }
-            return await _context.Hotels.ToListAsync();
+            return await _room.GetRooms();
         }
 
         // GET: api/Room/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Hotel>> GetHotel(int id)
+        public async Task<ActionResult<Room>> GetRoom(int id)
         {
-          if (_context.Hotels == null)
-          {
-              return NotFound();
-          }
-            var hotel = await _context.Hotels.FindAsync(id);
-
-            if (hotel == null)
-            {
-                return NotFound();
-            }
-
-            return hotel;
+            var room = await _room.GetRoom(id);
+            return room;
         }
 
         // PUT: api/Room/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutHotel(int id, Hotel hotel)
+        public async Task<IActionResult> PutRoom(int id, Room room)
         {
-            if (id != hotel.ID)
+            if(id != room.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(hotel).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HotelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            var updateRoom = await _room.UpdateRoom(id, room);
+            return Ok(updateRoom);
         }
 
         // POST: api/Room
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
+        public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-          if (_context.Hotels == null)
-          {
-              return Problem("Entity set 'HotelDbContext.Hotels'  is null.");
-          }
-            _context.Hotels.Add(hotel);
-            await _context.SaveChangesAsync();
+            await _room.Create(room);
+            return CreatedAtAction("GetRoom", new { id = room.Id }, room);
 
-            return CreatedAtAction("GetHotel", new { id = hotel.ID }, hotel);
         }
 
         // DELETE: api/Room/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteHotel(int id)
+        public async Task<IActionResult> DeleteRoom(int id)
         {
-            if (_context.Hotels == null)
-            {
-                return NotFound();
-            }
-            var hotel = await _context.Hotels.FindAsync(id);
-            if (hotel == null)
-            {
-                return NotFound();
-            }
-
-            _context.Hotels.Remove(hotel);
-            await _context.SaveChangesAsync();
-
+            await _room.Delete(id);
             return NoContent();
         }
 
-        private bool HotelExists(int id)
+        ///////////////////////////////////////////// add and remove amenities to a specific room:
+        // POST: api/Room/{roomId}/Amenity/{amenityId}
+        [HttpPost("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> AddAmenityToRoom(int roomID, int amenityID)
         {
-            return (_context.Hotels?.Any(e => e.ID == id)).GetValueOrDefault();
+            //try
+            //{
+                await _room.AddAmenityToRoom(roomID, amenityID);
+                return Ok();
+            //}
+            //catch (Exception)
+            //{
+            //    return StatusCode(StatusCodes.Status500InternalServerError);
+            //}
+        }
+
+        // DELETE: api/Room/{roomId}/Amenity/{amenityId}
+        [HttpDelete("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> RemoveAmenityFromRoom(int roomID, int amenityID)
+        {
+            //try
+            //{
+                await _room.RemoveAmenityFromRoom(roomID, amenityID);
+                return NoContent();
+            //}
+            //catch (Exception)
+            //{
+            //    return StatusCode(StatusCodes.Status500InternalServerError);
+            //}
         }
     }
 }

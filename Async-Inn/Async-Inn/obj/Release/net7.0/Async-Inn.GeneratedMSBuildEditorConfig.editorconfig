@@ -9,9 +9,33 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Async_Inn
 build_property.RootNamespace = Async_Inn
-build_property.ProjectDir = C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn\
+build_property.ProjectDir = C:\Users\HM\source\repos\Async-Inn\Async-Inn\Async-Inn\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn
+build_property.MSBuildProjectDirectory = C:\Users\HM\source\repos\Async-Inn\Async-Inn\Async-Inn
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/HM/source/repos/Async-Inn/Async-Inn/Async-Inn/Views/HotelRoom/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG90ZWxSb29tXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HM/source/repos/Async-Inn/Async-Inn/Async-Inn/Views/HotelRoom/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG90ZWxSb29tXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HM/source/repos/Async-Inn/Async-Inn/Async-Inn/Views/HotelRoom/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG90ZWxSb29tXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HM/source/repos/Async-Inn/Async-Inn/Async-Inn/Views/HotelRoom/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG90ZWxSb29tXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HM/source/repos/Async-Inn/Async-Inn/Async-Inn/Views/HotelRoom/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG90ZWxSb29tXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HM/source/repos/Async-Inn/Async-Inn/Async-Inn/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

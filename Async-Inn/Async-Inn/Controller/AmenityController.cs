@@ -15,117 +15,56 @@ namespace Async_Inn.Controller
     [ApiController]
     public class AmenityController : ControllerBase
     {
-        private readonly HotelDbContext _context;
+        private readonly IAmenity _amenity;
 
-        public AmenityController(HotelDbContext context)
+        public AmenityController(IAmenity amenity)
         {
-            _context = context;
+            _amenity = amenity;
         }
-        //private readonly IAmenity _amenityService;
-
-        //public AmenityController(IAmenity amenityService)
-        //{
-        //    _amenityService = amenityService;
-        //}
 
         // GET: api/Amenity
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
+        public async Task<ActionResult<IEnumerable<Amenity>>> GetAmenities()
         {
-          if (_context.Hotels == null)
-          {
-              return NotFound();
-          }
-            return await _context.Hotels.ToListAsync();
+            return await _amenity.GetAmenities();
         }
 
         // GET: api/Amenity/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Hotel>> GetHotel(int id)
+        public async Task<ActionResult<Amenity>> GetAmenity(int id)
         {
-          if (_context.Hotels == null)
-          {
-              return NotFound();
-          }
-            var hotel = await _context.Hotels.FindAsync(id);
-
-            if (hotel == null)
-            {
-                return NotFound();
-            }
-
-            return hotel;
+            var amenity = await _amenity.GetAmenity(id);
+            return amenity;
         }
 
         // PUT: api/Amenity/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutHotel(int id, Hotel hotel)
+        public async Task<IActionResult> PutAmenity(int id, Amenity amenity)
         {
-            if (id != hotel.ID)
+            if(id != amenity.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(hotel).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HotelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            var updateAmenity = await _amenity.UpdateAmenity(id, amenity);
+            return Ok(updateAmenity);
         }
 
         // POST: api/Amenity
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
+        public async Task<ActionResult<Hotel>> PostAmenity(Amenity amenity)
         {
-          if (_context.Hotels == null)
-          {
-              return Problem("Entity set 'HotelDbContext.Hotels'  is null.");
-          }
-            _context.Hotels.Add(hotel);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetHotel", new { id = hotel.ID }, hotel);
+            await _amenity.Create(amenity);
+            return CreatedAtAction("GetAmenity", new { id = amenity.Id }, amenity);
         }
 
         // DELETE: api/Amenity/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteHotel(int id)
+        public async Task<IActionResult> DeleteAmenity(int id)
         {
-            if (_context.Hotels == null)
-            {
-                return NotFound();
-            }
-            var hotel = await _context.Hotels.FindAsync(id);
-            if (hotel == null)
-            {
-                return NotFound();
-            }
-
-            _context.Hotels.Remove(hotel);
-            await _context.SaveChangesAsync();
-
+            await _amenity.Delete(id);
             return NoContent();
-        }
-
-        private bool HotelExists(int id)
-        {
-            return (_context.Hotels?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

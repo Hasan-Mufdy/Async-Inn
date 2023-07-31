@@ -17,7 +17,6 @@ namespace Async_Inn
             builder.Services.AddTransient<IAmenity, AmenityService>();
             builder.Services.AddTransient<IRoom, RoomService>();
 
-            builder.Services.AddControllers();
             builder.Services.AddControllers().AddNewtonsoftJson(
                 option => option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
@@ -32,10 +31,9 @@ namespace Async_Inn
             var app = builder.Build();
 
             app.MapControllers();
-
             app.MapGet("/", () => "Hello World!");
 
-            app.MapGet("/Test/PrintHelo", () => "Hello From Test!");
+            app.MapGet("/Test/PrintHello", () => "Hello From Test!");
 
             app.Run();
         }
