@@ -1,4 +1,5 @@
 ﻿using Async_Inn.Data;
+using Async_Inn.Models.DTO;
 using Async_Inn.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,12 +20,34 @@ namespace Async_Inn.Models.Services
             await _context.SaveChangesAsync();
             return hotelRoom;
         }
+        //public async Task<HotelRoomDTO> CreateHotelRoom(HotelRoomDTO newhotelRoom)
+        //{
+        //    HotelRoom hotelRoom = new HotelRoom()
+        //    {
+        //        RoomNumber = newhotelRoom.Name.Split(" ").First(),
+        //        RoomId = newhotelRoom.Id.Split(" ").First()
+        //    }
+        //    _context.HotelRooms.Add(hotelRoom);
+        //    await _context.SaveChangesAsync();
+        //    return hotelRoom;
+        //}
 
         public async Task<HotelRoom> GetHotelRoom(int hotelId, int roomNumber)
         {
             var HotelRoom = await _context.HotelRooms.Where(x => x.HotelId == hotelId && x.RoomNumber == roomNumber).FirstOrDefaultAsync();
             return HotelRoom;
         }
+        //public async Task<HotelRoom> GetHotelRoom(int hotelId, int roomNumber)
+        //{
+        //    var HotelRoom = await _context.HotelRooms.Where(x => x.HotelId == hotelId && x.RoomNumber == roomNumber).FirstOrDefaultAsync();
+        //    return HotelRoom;
+
+        //    var hotelRoomDTO = _context.HotelRooms.Select(s => new HotelRoomDTO
+        //    {
+        //        RoomID = s.RoomId
+        //    }).FirstOrDefault(x => x.RoomID == roomNumber);
+
+        //}
 
         public async Task<List<HotelRoom>> GetHotelRooms(int hotelID)
         {
