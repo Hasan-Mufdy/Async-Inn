@@ -42,7 +42,7 @@ namespace Async_Inn.Controller
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAmenity(int id, Amenity amenity)
         {
-            if(id != amenity.Id)
+            if (id != amenity.Id)
             {
                 return BadRequest();
             }

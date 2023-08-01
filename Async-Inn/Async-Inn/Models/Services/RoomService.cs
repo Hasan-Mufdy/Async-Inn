@@ -25,6 +25,16 @@ namespace Async_Inn.Models.Services
             _context.Rooms.Add(room);
             await _context.SaveChangesAsync();
             return room;
+
+            //var RoomDTO = new RoomDTO()
+            //{
+            //    ID = room.Id,
+            //    Name = room.Name,
+            //    Layout = room.Layout,
+            //};
+            //_context.Rooms.Add(room);
+            //await _context.SaveChangesAsync();
+            //return RoomDTO;
         }
 
         public async Task Delete(int id)
