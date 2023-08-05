@@ -1,4 +1,5 @@
 ﻿using Async_Inn.Data;
+using Async_Inn.Models.DTO;
 using Async_Inn.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -20,21 +21,21 @@ namespace Async_Inn.Models.Services
         //{
         //    return _context.Rooms.Include(r => r.RoomAmenities).ToList();
         //}
-        public async Task<Room> Create(Room room)
+        public async Task<RoomDTO> Create(Room room)
         {
-            _context.Rooms.Add(room);
-            await _context.SaveChangesAsync();
-            return room;
-
-            //var RoomDTO = new RoomDTO()
-            //{
-            //    ID = room.Id,
-            //    Name = room.Name,
-            //    Layout = room.Layout,
-            //};
             //_context.Rooms.Add(room);
             //await _context.SaveChangesAsync();
-            //return RoomDTO;
+            //return room;
+
+            var RoomDTO = new RoomDTO()
+            {
+                ID = room.Id,
+                Name = room.Name,
+                Layout = room.Layout,
+            };
+            _context.Rooms.Add(room);
+            await _context.SaveChangesAsync();
+            return RoomDTO;
         }
 
         public async Task Delete(int id)
@@ -50,10 +51,21 @@ namespace Async_Inn.Models.Services
             return room;
         }
 
-        public async Task<List<Room>> GetRooms()
+        public async Task<List<RoomDTO>> GetRooms()
         {
-            var rooms = await _context.Rooms.ToListAsync();
-            return rooms;
+            //var rooms = await _context.Rooms.ToListAsync();
+            //return rooms;
+
+            var roomsDTO = await _context.Rooms
+            .Include(r  => r.Rooms)
+            .Select(r =>  new RoomDTO
+            {
+                Name = r.Name,
+                Layout = r.Layout
+            }).ToListAsync();
+
+            return roomsDTO;
+
         }
 
         public async Task<Room> UpdateRoom(int id, Room room)
@@ -61,6 +73,7 @@ namespace Async_Inn.Models.Services
             _context.Entry(room).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return room;
+
         }
 
 

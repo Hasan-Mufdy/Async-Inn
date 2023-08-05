@@ -3,11 +3,7 @@
     "",
     "\\Async-Inn",
     "\\Async-Inn\\Async-Inn",
-    "\\Async-Inn\\Async-Inn\\Controller",
-    "\\Async-Inn\\Async-Inn\\Data",
-    "\\Async-Inn\\Async-Inn\\Models",
-    "\\Async-Inn\\Async-Inn\\Models\\Interfaces",
-    "\\Async-Inn\\Async-Inn\\Models\\Services"
+    "\\Async-Inn\\Async-Inn\\Controller"
   ],
   "SelectedNode": "\\Async-Inn\\Async-Inn.sln",
   "PreviewInSolutionExplorer": false

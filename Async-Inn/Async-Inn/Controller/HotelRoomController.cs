@@ -21,13 +21,13 @@ namespace Async_Inn.Controller
         {
             _hotelRoom = hotelRoom;
         }
+
         // GET: api/HotelRoom
         [HttpGet]
-        [Route("{hotelID}")]
-
-        public async Task<ActionResult<IEnumerable<HotelRoom>>> GetHotelRooms(int hotelID)
+        //[Route("{hotelID}")]
+        public async Task<ActionResult<IEnumerable<HotelRoom>>> GetHotelRooms()
         {
-            return await _hotelRoom.GetHotelRooms(hotelID);
+            return await _hotelRoom.GetHotelRooms();
         }
 
         // GET: api/HotelRoom/5
@@ -44,7 +44,7 @@ namespace Async_Inn.Controller
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHotelRoom(int id, HotelRoom hotelRoom)
         {
-            if (id != hotelRoom.HotelId)
+            if (id != hotelRoom.HotelID)
             {
                 return BadRequest();
             }
@@ -58,7 +58,9 @@ namespace Async_Inn.Controller
         [HttpPost]
         public async Task<ActionResult<HotelRoom>> PostHotelRoom(HotelRoom hotelRoom)
         {
-            return await _hotelRoom.CreateHotelRoom(hotelRoom);
+            //return await _hotelRoom.CreateHotelRoom(hotelRoom);
+            await _hotelRoom.CreateHotelRoom(hotelRoom);
+            return CreatedAtAction("GetHotelRoom", new { HotelID = hotelRoom.HotelID }, hotelRoom);
         }
 
         // DELETE: api/HotelRoom/5
