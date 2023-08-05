@@ -8,8 +8,8 @@
 
         //
         // nav props:
-        public List<RoomAmenity> RoomAmenities { get; set; }
-        public IList<HotelRoom> Rooms { get; set; }
+        public List<RoomAmenity>? RoomAmenities { get; set; }
+        public IList<HotelRoom>? Rooms { get; set; }
         //public Amenity amenity { get; set; }
         //public Room room { get; set; }
 

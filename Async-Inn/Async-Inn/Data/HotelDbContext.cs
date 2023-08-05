@@ -43,10 +43,10 @@ namespace Async_Inn.Data
             modelBuilder.Entity<RoomAmenity>().HasKey(i => new { i.RoomId, i.AmenityId });
 
             ///////////////
-            
-            //modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { HotelId = 1, RoomNumber = 101, RoomId = 1 });
-            //modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { HotelId = 1, RoomNumber = 102, RoomId = 2 });
-            //modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { HotelId = 2, RoomNumber = 201, RoomId = 2 });
+
+            modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { HotelID = 1, RoomNumber = 101, RoomID = 1 });
+            modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { HotelID = 1, RoomNumber = 102, RoomID = 2 });
+            modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { HotelID = 2, RoomNumber = 201, RoomID = 2 });
 
             // many to many
             modelBuilder.Entity<RoomAmenity>().HasKey(ra => new { ra.RoomId, ra.AmenityId });
@@ -57,7 +57,7 @@ namespace Async_Inn.Data
             modelBuilder.Entity<RoomAmenity>().HasData(new RoomAmenity { RoomId = 2, AmenityId = 2 });
             modelBuilder.Entity<RoomAmenity>().HasData(new RoomAmenity { RoomId = 3, AmenityId = 3 });
 
-            modelBuilder.Entity<HotelRoom>().HasKey(i => new { i.RoomNumber, i.HotelId });
+            modelBuilder.Entity<HotelRoom>().HasKey(i => new { i.RoomNumber, i.HotelID });
         }
     }
 }

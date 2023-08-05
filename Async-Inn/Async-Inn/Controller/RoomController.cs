@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Async_Inn.Data;
 using Async_Inn.Models;
 using Async_Inn.Models.Interfaces;
+using Async_Inn.Models.DTO;
 
 namespace Async_Inn.Controller
 {
@@ -24,7 +25,7 @@ namespace Async_Inn.Controller
 
         // GET: api/Room
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<RoomDTO>>> GetRooms()
         {
             return await _room.GetRooms();
         }

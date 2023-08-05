@@ -34,8 +34,11 @@ namespace Async_Inn.Models.Services
 
         public async Task<HotelRoom> GetHotelRoom(int hotelId, int roomNumber)
         {
-            var HotelRoom = await _context.HotelRooms.Where(x => x.HotelId == hotelId && x.RoomNumber == roomNumber).FirstOrDefaultAsync();
-            return HotelRoom;
+            //var HotelRoom = await _context.HotelRooms.Where(x => x.HotelID == hotelId && x.RoomNumber == roomNumber).FirstOrDefaultAsync();
+            //return HotelRoom;
+
+            HotelRoom hotelRoom = await _context.HotelRooms.FindAsync(hotelId, roomNumber);
+            return hotelRoom;
         }
         //public async Task<HotelRoom> GetHotelRoom(int hotelId, int roomNumber)
         //{
@@ -49,15 +52,18 @@ namespace Async_Inn.Models.Services
 
         //}
 
-        public async Task<List<HotelRoom>> GetHotelRooms(int hotelID)
+        public async Task<List<HotelRoom>> GetHotelRooms()
         {
-            var hotelRoom = await _context.HotelRooms.Where(x=>x.HotelId == hotelID).Include(x => x.rooms).ThenInclude(x => x.Rooms).ToListAsync();
-            List<HotelRoom> l = new List<HotelRoom>();
-            foreach(var HotelRoom in hotelRoom)
-            {
-                l.Add(await GetHotelRoom(HotelRoom.HotelId, HotelRoom.RoomNumber));
-            }
-            return l;
+            //var hotelRoom = await _context.HotelRooms.Where(x=>x.HotelID == hotelID).Include(x => x.rooms).ThenInclude(x => x.Rooms).ToListAsync();
+            //List<HotelRoom> l = new List<HotelRoom>();
+            //foreach(var HotelRoom in hotelRoom)
+            //{
+            //    l.Add(await GetHotelRoom(HotelRoom.HotelID, HotelRoom.RoomNumber));
+            //}
+            //return l;
+
+            var hotelrooms = await _context.HotelRooms.ToListAsync();
+            return hotelrooms;
         }
 
         public async Task<HotelRoom> UpdateHotelRoom(int hotelId,  HotelRoom hotelRoom)

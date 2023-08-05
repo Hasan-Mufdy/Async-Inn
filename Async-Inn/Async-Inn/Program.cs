@@ -1,7 +1,8 @@
-using Async_Inn.Data;
+ using Async_Inn.Data;
 using Async_Inn.Models.Interfaces;
 using Async_Inn.Models.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Async_Inn
 {
@@ -15,7 +16,17 @@ namespace Async_Inn
             builder.Services.AddTransient<IHotel, HotelService>();
             builder.Services.AddTransient<IRoom, RoomService>();
             builder.Services.AddTransient<IAmenity, AmenityService>();
-            builder.Services.AddTransient<IRoom, RoomService>();
+            builder.Services.AddTransient<IHotelRoom, HotelRoomRepository>();
+
+
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "Async-Inn",
+                    Version = "v1"
+                });
+            });
 
             builder.Services.AddControllers().AddNewtonsoftJson(
                 option => option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -29,6 +40,16 @@ namespace Async_Inn
 
 
             var app = builder.Build();
+
+            app.UseSwagger(options =>
+            {
+                options.RouteTemplate = "/api/{documentName}/swagger.json";
+            });
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/api/v1/swagger.json", "Async-Inn");
+                options.RoutePrefix = "docs";
+            });
 
             app.MapControllers();
             app.MapGet("/", () => "Hello World!");
