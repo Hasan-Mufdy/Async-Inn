@@ -25,7 +25,7 @@ namespace Async_Inn.Models.Services
         //}
         public async Task<HotelDTO> Create(Hotel newhotel)
         {
-            HotelDTO hotel = new HotelDTO
+            var hotelDTO = new HotelDTO
             {
                 Name = newhotel.Name,
                 State = newhotel.State,
@@ -36,7 +36,7 @@ namespace Async_Inn.Models.Services
             };
             _context.Hotels.Add(newhotel);
             await _context.SaveChangesAsync();
-            return hotel;
+            return hotelDTO;
         }
 
         public async Task Delete(int id)
@@ -53,18 +53,20 @@ namespace Async_Inn.Models.Services
         //}
         public async Task<HotelDTO> GetHotel(int hotelId)
         {
+            var hotel = await _context.Hotels.Where(h => h.ID == hotelId).FirstOrDefaultAsync();
             var hotelDTO = _context.Hotels.Select(s => new HotelDTO
             {
-                Name = s.Name,
-                StreetAddress = s.StreetAddress,
-                City = s.City,
-                State = s.State,
-                Phone = s.Phone,
+                ID = hotel.ID,
+                Name = hotel.Name,
+                StreetAddress = hotel.StreetAddress,
+                City = hotel.City,
+                State = hotel.State,
+                Phone = hotel.Phone,
                 //Rooms = s.rooms.Select(t => new HotelDTO()
                 //{
                   //  Rooms = t.Rooms
                 //})
-            }).FirstOrDefault(x => x.ID == hotelId);
+            }).FirstOrDefault();
             return hotelDTO;
         }
 
@@ -77,11 +79,9 @@ namespace Async_Inn.Models.Services
         //}
         public async Task<List<HotelDTO>> GetHotels()
         {
-            var hotelDTOs = await _context.Hotels
-        //.Include(h => h.Rooms)
+        var hotelDTOs = await _context.Hotels
         .Include(h => h.HotelRooms)
-        .Include(h => h.Rooms)
-        .ThenInclude(r => r.Amenities)
+        .ThenInclude(hr => hr.rooms)
         .Select(s => new HotelDTO
         {
             ID = s.ID,
@@ -90,7 +90,7 @@ namespace Async_Inn.Models.Services
             City = s.City,
             State = s.State,
             Phone = s.Phone,
-            Rooms = s.Rooms.Select(r => new HotelRoomDTO
+            Rooms = s.HotelRooms.Select(r => new HotelRoomDTO
             {
                 HotelID = r.HotelID,
                 RoomNumber = r.RoomNumber,
@@ -99,13 +99,13 @@ namespace Async_Inn.Models.Services
                 RoomID = r.RoomID,
                 Room = new RoomDTO
                 {
-                    ID = r.Room.ID,
-                    Name = r.Room.Name,
-                    Layout = r.Room.Layout.Name,
-                    Amenities = r.Room.Amenities.Select(a => new AmenityDTO
+                    ID = r.rooms.Id,
+                    Name = r.rooms.Name,
+                    Layout = r.rooms.Layout,
+                    Amenities = r.rooms.RoomAmenities.Select(a => new AmenityDTO
                     {
-                        ID = a.Amenity.ID,
-                        Name = a.Amenity.Name
+                        ID = a.amenity.Id,
+                        Name = a.amenity.Name
                     }).ToList()
                 }
             }).ToList()
@@ -121,7 +121,7 @@ namespace Async_Inn.Models.Services
             //_context.Entry(hotel).State = EntityState.Modified;
             //await _context.SaveChangesAsync();
             //return hotel;
-            var hotels = await _context.Hotels.Where(h  => h.ID == id).ToListAsync();
+            var hotels = await _context.Hotels.Where(h  => h.ID == id).FirstOrDefaultAsync();
             var updatedHotel = new HotelDTO
             {
                 Name = hotel.Name,
