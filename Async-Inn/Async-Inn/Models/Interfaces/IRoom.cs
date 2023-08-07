@@ -12,17 +12,17 @@ namespace Async_Inn.Models.Interfaces
         Task<List<RoomDTO>> GetRooms();
 
 
-        Task<Room> GetRoom(int roomId);
-        //Task<RoomDTO> GetRoom(int roomId);
+        //Task<Room> GetRoom(int roomId);
+        Task<RoomDTO> GetRoom(int roomId);
 
 
-        Task<Room> UpdateRoom(int id, Room room);
-        //Task<RoomDTO> UpdateRoom(int id, RoomDTO room);
+        //Task<Room> UpdateRoom(int id, Room room);
+        Task<RoomDTO> UpdateRoom(int id, Room room);
 
 
-        Task Delete(int id);
+        Task<RoomDTO> Delete(int id);
 
-        Task AddAmenityToRoom(int roomId, int amenityId);
-        Task RemoveAmenityFromRoom(int roomId, int amenityId);
+        Task<RoomAmenity> AddAmenityToRoom(int roomId, int amenityId);
+        Task<RoomAmenity> RemoveAmenityFromRoom(int roomId, int amenityId);
     }
 }

@@ -25,7 +25,7 @@ namespace Async_Inn.Controller
 
         // GET: api/Amenity
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Amenity>>> GetAmenities()
+        public async Task<ActionResult<IEnumerable<AmenityDTO>>> GetAmenities()
         {
             return await _amenity.GetAmenities();
         }
