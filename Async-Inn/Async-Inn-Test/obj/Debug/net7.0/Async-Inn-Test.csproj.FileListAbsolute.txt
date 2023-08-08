@@ -356,3 +356,9 @@ C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\obj\Debug\net7.0\ref
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\obj\Debug\net7.0\Async-Inn-Test.pdb
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\obj\Debug\net7.0\Async-Inn-Test.genruntimeconfig.cache
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\obj\Debug\net7.0\ref\Async-Inn-Test.dll
+C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.Extensions.Options.dll

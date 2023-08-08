@@ -56,3 +56,37 @@ each entity has a controller, interface, and a service class.
 
 right now, the data appears as a JSON data in the browser, and an interface will be implemented in the future.
 
+
+## Identity:
+
+https://codefellows.github.io/code-401-dotnet-guide/curriculum/class-18/resources/identity.html
+
+### file changes in the project:
+
+there are some new files are added to implement user authentication in the project:
+- UserConntroller
+- ApplicationUser
+- IdentityUserService
+- Iuser
+- LoginDTO
+- RegisterUserDTO
+- UserDTO
+
+### steps for users to register and login:
+
+1. users first have to register and enter their info:
+
+![register](/assets/reg1.png)
+
+2. registering response:
+
+![register response](/assets/reg2.png)
+
+3. users now can login using their username and password:
+
+![login](/assets/log1.png)
+
+4. if the login is successful:
+
+![login successfuly](/assets/logsc.png)
+
