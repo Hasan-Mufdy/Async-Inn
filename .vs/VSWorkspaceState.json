@@ -4,9 +4,11 @@
     "\\Async-Inn",
     "\\Async-Inn\\Async-Inn",
     "\\Async-Inn\\Async-Inn-Test",
+    "\\Async-Inn\\Async-Inn\\Controller",
     "\\Async-Inn\\Async-Inn\\Models",
-    "\\Async-Inn\\Async-Inn\\Models\\Interfaces"
+    "\\Async-Inn\\Async-Inn\\Models\\Interfaces",
+    "\\Async-Inn\\Async-Inn\\Models\\Services"
   ],
-  "SelectedNode": "\\Async-Inn\\Async-Inn-Test\\UnitTest1.cs",
+  "SelectedNode": "\\Async-Inn\\Async-Inn\\Controller\\HotelRoomController.cs",
   "PreviewInSolutionExplorer": false
 }
