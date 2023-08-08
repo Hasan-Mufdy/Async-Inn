@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Async_Inn.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    [Migration("20230804180833_HotelRoomUpdates")]
-    partial class HotelRoomUpdates
+    [Migration("20230808182208_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -247,7 +247,7 @@ namespace Async_Inn.Migrations
             modelBuilder.Entity("Async_Inn.Models.HotelRoom", b =>
                 {
                     b.HasOne("Async_Inn.Models.Hotel", "hotels")
-                        .WithMany()
+                        .WithMany("HotelRooms")
                         .HasForeignKey("HotelID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -285,6 +285,11 @@ namespace Async_Inn.Migrations
             modelBuilder.Entity("Async_Inn.Models.Amenity", b =>
                 {
                     b.Navigation("RoomAmenities");
+                });
+
+            modelBuilder.Entity("Async_Inn.Models.Hotel", b =>
+                {
+                    b.Navigation("HotelRooms");
                 });
 
             modelBuilder.Entity("Async_Inn.Models.Room", b =>
