@@ -9,9 +9,13 @@ using Async_Inn.Data;
 using Async_Inn.Models;
 using Async_Inn.Models.Interfaces;
 using Async_Inn.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Async_Inn.Controller
 {
+    [Authorize(Roles = "District Manager")]
     [Route("api/[controller]")]
     [ApiController]
     public class HotelRoomController : ControllerBase
@@ -23,6 +27,8 @@ namespace Async_Inn.Controller
             _hotelRoom = hotelRoom;
         }
 
+        [Authorize(Roles = "Agent, Property Manager")]
+        [AllowAnonymous]
         // GET: api/HotelRoom
         [HttpGet]
         //[Route("{hotelID}")]
@@ -31,6 +37,8 @@ namespace Async_Inn.Controller
             return await _hotelRoom.GetHotelRooms();
         }
 
+        [Authorize(Roles = "Agent, Property Manager")]
+        [AllowAnonymous]
         // GET: api/HotelRoom/5
         [HttpGet]
         [Route("Hotels/{id}/Room/{roomNumber}")]
@@ -40,6 +48,7 @@ namespace Async_Inn.Controller
             return hotelRoom;
         }
 
+        [Authorize(Roles = "Property Manager, Agent")]
         // PUT: api/HotelRoom/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -54,6 +63,7 @@ namespace Async_Inn.Controller
             return Ok(updateHotel);
         }
 
+        [Authorize(Roles = "Property Manager")]
         // POST: api/HotelRoom
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

@@ -290,3 +290,4 @@ C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn\bin\Debug\net7.0\Microsof
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

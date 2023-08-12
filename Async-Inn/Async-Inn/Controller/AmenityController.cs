@@ -9,9 +9,11 @@ using Async_Inn.Data;
 using Async_Inn.Models;
 using Async_Inn.Models.Interfaces;
 using Async_Inn.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Async_Inn.Controller
 {
+    [Authorize(Roles = "District Manager")]
     [Route("api/[controller]")]
     [ApiController]
     public class AmenityController : ControllerBase
@@ -22,14 +24,14 @@ namespace Async_Inn.Controller
         {
             _amenity = amenity;
         }
-
+        [AllowAnonymous]
         // GET: api/Amenity
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AmenityDTO>>> GetAmenities()
         {
             return await _amenity.GetAmenities();
         }
-
+        [AllowAnonymous]
         // GET: api/Amenity/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AmenityDTO>> GetAmenity(int id)
@@ -37,7 +39,7 @@ namespace Async_Inn.Controller
             var amenity = await _amenity.GetAmenity(id);
             return amenity;
         }
-
+        [Authorize(Roles = "Property Manager")]
         // PUT: api/Amenity/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -51,6 +53,7 @@ namespace Async_Inn.Controller
             return Ok(updateAmenity);
         }
 
+        [Authorize(Roles = "Agent, Property Manager")]
         // POST: api/Amenity
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -60,6 +63,7 @@ namespace Async_Inn.Controller
             return CreatedAtAction("GetAmenity", new { id = amenity.Id }, amenity);
         }
 
+        [Authorize(Roles = "Agent")]
         // DELETE: api/Amenity/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAmenity(int id)

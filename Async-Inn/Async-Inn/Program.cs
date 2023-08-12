@@ -1,7 +1,8 @@
- using Async_Inn.Data;
+using Async_Inn.Data;
 using Async_Inn.Models;
 using Async_Inn.Models.Interfaces;
 using Async_Inn.Models.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -21,6 +22,20 @@ namespace Async_Inn
             builder.Services.AddTransient<IRoom, RoomService>();
             builder.Services.AddTransient<IAmenity, AmenityService>();
             builder.Services.AddTransient<IHotelRoom, HotelRoomRepository>();
+
+
+            builder.Services.AddScoped<JwtTokenService>();
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                // Tell the authenticaion scheme "how/where" to validate the token + secret
+                options.TokenValidationParameters = JwtTokenService.GetValidationPerameters(builder.Configuration);
+            });
 
 
             builder.Services.AddSwaggerGen(options =>

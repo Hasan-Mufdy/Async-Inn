@@ -1,6 +1,8 @@
 ﻿using Async_Inn.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 using System.Reflection.Metadata;
 
 namespace Async_Inn.Data
@@ -11,13 +13,26 @@ namespace Async_Inn.Data
         {
             
         }
-
+        
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Amenity> Amenities { get; set; }
         public DbSet<RoomAmenity> RoomAmenities { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
 
+
+        private void seedRole(ModelBuilder modelBuilder, string roleName)
+        {
+            var role = new IdentityRole
+            {
+                Id = roleName.ToLower(),
+                Name = roleName,
+                NormalizedName = roleName.ToUpper(),
+                ConcurrencyStamp = Guid.Empty.ToString()
+            };
+            modelBuilder.Entity<IdentityRole>().HasData(role);
+
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -58,6 +73,12 @@ namespace Async_Inn.Data
             modelBuilder.Entity<RoomAmenity>().HasData(new RoomAmenity { RoomId = 3, AmenityId = 3 });
 
             modelBuilder.Entity<HotelRoom>().HasKey(i => new { i.RoomNumber, i.HotelID });
+
+            ////////
+            ///
+            seedRole(modelBuilder, "District Manager");
+            seedRole(modelBuilder, "Property Manager");
+            seedRole(modelBuilder, "Agent");
         }
     }
 }

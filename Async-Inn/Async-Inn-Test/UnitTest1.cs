@@ -265,11 +265,14 @@ namespace Async_Inn_Test
 
 
 
-        //    //var hotelService = new HotelService(_db);
+        //    var hotelService = new HotelService(_db);
         //    //var hotelID = await hotelService.GetHotel(1);
         //    var deletedHotel = await hotelService.Delete(hotel.ID);
 
+        //    //Assert.NotNull(deletedHotel);
         //    Assert.Equal(hotel.Name, deletedHotel.Name);
+
+        //    //
         //    //Assert.Equal(deletedHotel.Name, hotel.Name);
 
 

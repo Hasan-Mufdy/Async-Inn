@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\assets",
     "\\Async-Inn",
     "\\Async-Inn\\Async-Inn",
-    "\\Async-Inn\\Async-Inn-Test",
-    "\\Async-Inn\\Async-Inn\\Controller",
     "\\Async-Inn\\Async-Inn\\Data",
     "\\Async-Inn\\Async-Inn\\Migrations",
     "\\Async-Inn\\Async-Inn\\Models",
+    "\\Async-Inn\\Async-Inn\\Models\\DTO",
     "\\Async-Inn\\Async-Inn\\Models\\Interfaces",
     "\\Async-Inn\\Async-Inn\\Models\\Services"
   ],
-  "SelectedNode": "\\Async-Inn\\Async-Inn\\Models\\ApplicationUser.cs",
+  "SelectedNode": "\\Async-Inn\\Async-Inn\\Models\\Services\\IdentityUserService.cs",
   "PreviewInSolutionExplorer": false
 }
