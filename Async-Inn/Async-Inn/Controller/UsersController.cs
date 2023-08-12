@@ -1,10 +1,13 @@
 ﻿using Async_Inn.Models.DTO;
 using Async_Inn.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace Async_Inn.Controller
 {
+    [Authorize(Roles = "District Manager")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -15,7 +18,7 @@ namespace Async_Inn.Controller
             userService = service;
         }
 
-
+        [Authorize(Roles = "Property Manager, Agent")]
         [HttpPost("Register")]
         public async Task<ActionResult<UserDTO>> Register(RegisterUserDTO data)
         {
@@ -41,6 +44,12 @@ namespace Async_Inn.Controller
             return user;
         }
 
+        [Authorize(Roles = "District Manager")]
+        [HttpGet("Profile")]
+        public async Task<ActionResult<UserDTO>> Profile()
+        {
+            return await userService.GetUser(this.User);
+        }
 
 
     }

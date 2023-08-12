@@ -1,4 +1,3 @@
-C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\CoverletSourceRootsMapping
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\obj\Debug\net7.0\Async-Inn-Test.csproj.AssemblyReference.cache
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\obj\Debug\net7.0\Async-Inn-Test.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\obj\Debug\net7.0\Async-Inn-Test.AssemblyInfoInputs.cache
@@ -362,3 +361,5 @@ C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Mic
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\HM\Source\Repos\Async-Inn\Async-Inn\Async-Inn-Test\bin\Debug\net7.0\CoverletSourceRootsMapping_Async-Inn-Test
